@@ -1,0 +1,706 @@
+
+
+<h1>
+    Part 1: Rank The 5 Reports
+
+</h1>
+
+<style>
+	p {
+line-height:1.5;
+margin-top: 10px;
+text-align:justify;
+font-size: 20px;
+}
+li{
+    font-size: 20px;
+}
+td{
+    vertical-align: middle;
+}
+tr{
+    vertical-align: middle;
+    /* height:180%; */
+}
+.radio-cards {
+    /* width: 60%; */
+    padding:2%
+  }
+  
+  .radio-cards input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+  
+  .radio-cards p#money {
+      display: inline-block;
+      background-color: #ddd;
+      padding: 1px;
+      font-family: sans-serif, Arial;
+      font-size: 12px;
+      width: 100pt;
+      border: 2px solid #444;
+      border-radius: 4px;
+      text-align: center;
+  }
+  
+  .radio-cards label {
+      display: inline-block;
+      background-color: rgb(246, 246, 246);
+      padding: 1px;
+      color: #555;
+      font-family: sans-serif, Arial;
+      font-size: 12px;
+      width: 70pt;
+      border: 2px dashed #ddd;
+      border-radius: 4px;
+      text-align: center;
+  }
+  
+  .radio-cards input[type="radio"]:checked + label {
+      background-color:#bfb;
+      border-color: #4c4;
+  }
+  
+  .radio-cards label:hover {
+    background-color: #dfd;
+  }
+
+  .radio-cards-money {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border: 2px solid #444;
+    border-radius: 4px;
+    text-align: center;
+}
+  
+  /* Card 1 Style */ 
+  .radio-cards1 input[type="radio"]:checked + label {
+      color: #000;
+      background-color:rgb(232, 174, 243);
+      border: 2px solid;
+      border-color: rgb(224, 101, 183);
+  }
+  .radio-cards1 label:hover {
+    background-color: rgb(245, 225, 236);
+  }
+
+  /* Card 2 Style */ 
+  .radio-cards2 input[type="radio"]:checked + label {
+      color: #000;
+      background-color:rgb(192, 179, 253);
+      border: 2px solid;
+      border-color: rgb(155, 130, 243);
+  }
+  .radio-cards2 label:hover {
+    background-color: rgb(238, 236, 248);
+  }
+  
+  
+  /* Card 3 Style */ 
+  .radio-cards3 input[type="radio"]:checked + label {
+      color: #000;
+      background-color:rgb(253, 179, 179);
+      border: 2px solid;
+      border-color: rgb(243, 130, 158);
+  }
+  .radio-cards3 label:hover {
+    background-color: rgb(248, 236, 238);
+  }
+  
+  /* Card 4 Style */ 
+  .radio-cards4 input[type="radio"]:checked + label {
+      color: #000;
+      background-color:rgb(179, 253, 222);
+      border: 2px solid;
+      border-color: rgb(130, 243, 200);
+  }
+  .radio-cards4 label:hover {
+    background-color: rgb(236, 248, 247);
+  }
+  
+  /* Card 5 Style */ 
+  .radio-cards5 input[type="radio"]:checked + label {
+      color: #000;
+      background-color:rgb(253, 248, 179);
+      border: 2px solid;
+      border-color: rgb(243, 240, 75);
+  }
+  .radio-cards5 label:hover {
+    background-color: rgb(245, 241, 205);
+  }
+
+  .radio-cards1-checked {
+    display: inline-block;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    background-color:rgb(232, 174, 243);
+    border: 2px solid;
+    border-color: rgb(224, 101, 183);
+  }
+  .radio-cards2-checked {
+    display: inline-block;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    background-color:rgb(192, 179, 253);
+    border: 2px solid;
+    border-color: rgb(155, 130, 243);
+  }
+  .radio-cards3-checked {
+    display: inline-block;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    background-color:rgb(253, 179, 179);
+    border: 2px solid;
+    border-color: rgb(243, 130, 158)
+  }
+  .radio-cards4-checked {
+    display: inline-block;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    background-color:rgb(179, 253, 222);
+    border: 2px solid;
+    border-color: rgb(130, 243, 200)
+  }
+  .radio-cards5-checked {
+    display: inline-block;
+    padding: 1px;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    width: 100pt;
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    background-color:rgb(253, 248, 179);
+    border: 2px solid;
+    border-color: rgb(243, 240, 75)
+  }
+    .ranking-container {
+        display: flex;
+        gap: 40px;
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+    
+    .report-cards-source {
+        width: 200px;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 5px;
+        position: sticky;
+        top: 20px;
+        align-self: flex-start;
+    }
+    
+    .report-cards-source h4 {
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    .ranking-column {
+        width: 450px;
+        min-height: 400px;
+    }
+    
+    .ranking-column h4 {
+        text-align: center;
+        margin-top: 0;
+    }
+    
+    .card {
+        padding: 8px 12px;
+        margin: 2px;
+        border-radius: 4px;
+        cursor: grab;
+        text-align: center;
+        font-size: 14px;
+        user-select: none;
+        display: inline-block;
+    }
+    
+    .card:active {
+        cursor: grabbing;
+    }
+    
+    .report-card.report-1 { background: rgb(232, 174, 243); border: 2px solid rgb(224, 101, 183); }
+    .report-card.report-2 { background: rgb(192, 179, 253); border: 2px solid rgb(155, 130, 243); }
+    .report-card.report-3 { background: rgb(253, 179, 179); border: 2px solid rgb(243, 130, 158); }
+    .report-card.report-4 { background: rgb(179, 253, 222); border: 2px solid rgb(130, 243, 200); }
+    .report-card.report-5 { background: rgb(253, 248, 179); border: 2px solid rgb(243, 240, 75); }
+    
+    .money-card {
+        background: #f0f0f0;
+        border: 1px solid #999;
+        cursor: default;
+    }
+    
+    /* Each row in the ranking */
+    .ranking-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        margin: 3px 0;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    
+    .ranking-row.money-row {
+        background: transparent;
+        gap: 10px;
+        border: 2px dashed transparent;
+        transition: all 0.2s;
+    }
+    
+    .ranking-row.money-row.drag-over {
+        border-color: #007bff;
+        background: #e7f3ff;
+    }
+    
+    .ranking-row.report-row {
+        background: #f9f9f9;
+        border: 1px dashed #ccc;
+    }
+    
+    .ranking-row.report-row.drag-over {
+        border-color: #007bff;
+        background: #e7f3ff;
+    }
+    
+    /* Drop zone - the dummy space */
+    .drop-zone {
+        height: 8px;
+        margin: 2px 20px;
+        border-radius: 2px;
+        transition: all 0.2s;
+        background: transparent;
+    }
+    
+    .drop-zone.drag-over {
+        background: #007bff;
+        height: 12px;
+    }
+    
+    .position-values {
+        margin-top: 20px;
+        padding: 15px;
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        border-radius: 5px;
+        font-family: monospace;
+    }
+    
+    .report-cards-in-row {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 4px;
+    }
+</style>
+
+
+
+
+
+<div class="ranking-container">
+    <!-- Source cards -->
+    <div class="report-cards-source">
+        <h4>Report Cards</h4>
+        <p style="text-align: center; font-size: 10px;">(Double-click a placed card to reset it)</p> 
+        <div id="source-cards" style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="card report-card report-1" draggable="true" data-report="1">Report 1</div>
+            <div class="card report-card report-2" draggable="true" data-report="2">Report 2</div>
+            <div class="card report-card report-3" draggable="true" data-report="3">Report 3</div>
+            <div class="card report-card report-4" draggable="true" data-report="4">Report 4</div>
+            <div class="card report-card report-5" draggable="true" data-report="5">Report 5</div>
+        </div>
+    </div>
+    
+    <!-- Ranking column -->
+    <div class="ranking-column">
+        <h4>Your Preference Ranking</h4>
+        <div id="ranking-list">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- <div class="position-values">
+    <h4>Form Values (will be submitted to oTree, keep for testing):</h4>
+    <div id="form-values">
+        <p>form1: <span id="display_1"></span></p>
+        <p>form2: <span id="display_2"></span></p>
+        <p>form3: <span id="display_3"></span></p>
+        <p>form4: <span id="display_4"></span></p>
+        <p>form5: <span id="display_5"></span></p>
+    </div>
+</div> -->
+
+<div style="text-align: center;">
+    <button type="submit" class="otree-btn-next btn btn-primary">Submit Ranking</button>
+</div>
+
+
+<!-- Hidden inputs to store the ranking data for oTree -->
+<input type="hidden" name="form1" id="form1" value="">
+<input type="hidden" name="form2" id="form2" value="">
+<input type="hidden" name="form3" id="form3" value="">
+<input type="hidden" name="form4" id="form4" value="">
+<input type="hidden" name="form5" id="form5" value="">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const moneyAmounts = [5.00, 4.75, 4.50, 4.25, 4.00, 3.75, 3.50, 3.25, 3.00, 2.75, 2.50, 2.25, 2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25, 0.00];
+    const rankingList = document.getElementById('ranking-list');
+    
+    let draggedCard = null;
+    
+    // Build the ranking interface
+    function buildRankingList() {
+        rankingList.innerHTML = '';
+        
+        // Add invisible money cards at the extremes
+        const allAmounts = [5.25, ...moneyAmounts, -0.25];
+        
+        allAmounts.forEach((amount, index) => {
+            // Drop zone before each money row (except the first)
+            if (index > 0) {
+                const prevAmount = allAmounts[index - 1];
+                const zonePos = (prevAmount + amount) / 2;
+                const zone = createDropZone(zonePos);
+                rankingList.appendChild(zone);
+            }
+            
+            // Money row
+            const moneyRow = document.createElement('div');
+            moneyRow.className = 'ranking-row money-row';
+            moneyRow.dataset.position = amount;
+            moneyRow.dataset.type = 'money';
+            
+            // Make extreme cards invisible
+            if (amount === 5.25 || amount === -0.25) {
+                moneyRow.style.visibility = 'hidden';
+                moneyRow.style.minHeight = '0px';
+                moneyRow.style.margin = '0px';
+            }
+            
+            const moneyCard = document.createElement('div');
+            moneyCard.className = 'card money-card';
+            moneyCard.textContent = `No report + ${amount.toFixed(2)}`;
+            moneyRow.appendChild(moneyCard);
+            
+            rankingList.appendChild(moneyRow);
+        });
+        
+        // Final drop zone at the bottom
+        const lastZonePos = allAmounts[allAmounts.length - 1] - 0.25;
+        const lastZone = createDropZone(lastZonePos);
+        rankingList.appendChild(lastZone);
+    }
+    
+    function createDropZone(position) {
+        const zone = document.createElement('div');
+        zone.className = 'drop-zone';
+        zone.dataset.position = position;
+        zone.dataset.type = 'dropzone';
+        return zone;
+    }
+    
+    function createReportRow(position) {
+        const reportRow = document.createElement('div');
+        reportRow.className = 'ranking-row report-row';
+        reportRow.dataset.position = position;
+        reportRow.dataset.type = 'report';
+        
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'report-cards-in-row';
+        reportRow.appendChild(cardsContainer);
+        
+        return reportRow;
+    }
+    
+    // Drag and drop handlers
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.classList.contains('report-card')) {
+            draggedCard = e.target;
+            e.target.style.opacity = '0.5';
+            e.dataTransfer.effectAllowed = 'move';
+        }
+    });
+    
+    document.addEventListener('dragend', function(e) {
+        if (e.target.classList.contains('report-card')) {
+            e.target.style.opacity = '1';
+            draggedCard = null;
+            
+            // Remove all drag-over states
+            document.querySelectorAll('.drag-over').forEach(el => {
+                el.classList.remove('drag-over');
+            });
+        }
+    });
+    
+    document.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        
+        // Clear previous highlights
+        document.querySelectorAll('.drag-over').forEach(el => {
+            el.classList.remove('drag-over');
+        });
+        
+        // Find what we're over
+        const reportRow = e.target.closest('.report-row');
+        const moneyRow = e.target.closest('.money-row');
+        const dropZone = e.target.closest('.drop-zone');
+        
+        if (reportRow) {
+            reportRow.classList.add('drag-over');
+        } else if (moneyRow) {
+            moneyRow.classList.add('drag-over');
+        } else if (dropZone) {
+            dropZone.classList.add('drag-over');
+        }
+    });
+    
+    document.addEventListener('drop', function(e) {
+        e.preventDefault();
+        
+        if (!draggedCard) return;
+        
+        const reportRow = e.target.closest('.report-row');
+        const moneyRow = e.target.closest('.money-row');
+        const dropZone = e.target.closest('.drop-zone');
+        
+        let targetRow = null;
+        
+        if (reportRow) {
+            // Drop on existing report row - add to same row
+            targetRow = reportRow;
+        } else if (moneyRow) {
+            // Drop on money row - add to same level
+            targetRow = moneyRow;
+        } else if (dropZone) {
+            // Drop on zone - this is the key part
+            const zonePosition = parseFloat(dropZone.dataset.position);
+            
+            // Get adjacent elements to calculate new zone positions
+            const prevElement = dropZone.previousElementSibling;
+            const nextElement = dropZone.nextElementSibling;
+            
+            // Create the report row
+            targetRow = createReportRow(zonePosition);
+            
+            // Replace the drop zone with: [new zone above] [report row] [new zone below]
+            rankingList.insertBefore(targetRow, dropZone);
+            
+            // Create zone above (between prev element and report row)
+            if (prevElement && prevElement.dataset && prevElement.dataset.position) {
+                const prevPos = parseFloat(prevElement.dataset.position);
+                const abovePos = (prevPos + zonePosition) / 2;
+                const aboveZone = createDropZone(abovePos);
+                rankingList.insertBefore(aboveZone, targetRow);
+            }
+            
+            // Create zone below (between report row and next element)
+            if (nextElement && nextElement.dataset && nextElement.dataset.position) {
+                const nextPos = parseFloat(nextElement.dataset.position);
+                const belowPos = (zonePosition + nextPos) / 2;
+                const belowZone = createDropZone(belowPos);
+                rankingList.insertBefore(belowZone, nextElement);
+            }
+            
+            // Remove the original drop zone
+            dropZone.remove();
+        }
+        
+        if (targetRow) {
+            // Get or create cards container
+            let cardsContainer = targetRow.querySelector('.report-cards-in-row');
+            if (!cardsContainer) {
+                cardsContainer = document.createElement('div');
+                cardsContainer.className = 'report-cards-in-row';
+                // For money rows, insert before the money card
+                const moneyCard = targetRow.querySelector('.money-card');
+                if (moneyCard) {
+                    targetRow.insertBefore(cardsContainer, moneyCard);
+                } else {
+                    targetRow.insertBefore(cardsContainer, targetRow.firstChild);
+                }
+            }
+            
+            // Move or clone the card
+            let cardToPlace;
+            if (draggedCard.parentElement.id === 'source-cards') {
+                // First time placing from source
+                cardToPlace = draggedCard.cloneNode(true);
+                cardToPlace.classList.add('placed-card');
+                draggedCard.style.display = 'none';
+            } else {
+                // Moving an already placed card
+                cardToPlace = draggedCard;
+                const oldRow = draggedCard.closest('.report-row');
+                if (oldRow && oldRow !== targetRow) {
+                    setTimeout(() => {
+                        const oldContainer = oldRow.querySelector('.report-cards-in-row');
+                        if (oldContainer && oldContainer.children.length === 0) {
+                            // Empty row - need to restore a drop zone
+                            const oldPrevElement = oldRow.previousElementSibling;
+                            const oldNextElement = oldRow.nextElementSibling;
+                            
+                            // Remove the two zones around the old row
+                            if (oldPrevElement && oldPrevElement.classList && oldPrevElement.classList.contains('drop-zone')) {
+                                oldPrevElement.remove();
+                            }
+                            if (oldNextElement && oldNextElement.classList && oldNextElement.classList.contains('drop-zone')) {
+                                oldNextElement.remove();
+                            }
+                            
+                            // Find what's now adjacent after removals
+                            const newPrev = oldRow.previousElementSibling;
+                            const newNext = oldRow.nextElementSibling;
+                            
+                            // Remove the old row
+                            oldRow.remove();
+                            
+                            // Create a single drop zone to span the gap
+                            if (newPrev && newNext && newPrev.dataset && newNext.dataset &&
+                                newPrev.dataset.position && newNext.dataset.position) {
+                                const newPos = (parseFloat(newPrev.dataset.position) + parseFloat(newNext.dataset.position)) / 2;
+                                const newZone = createDropZone(newPos);
+                                rankingList.insertBefore(newZone, newNext);
+                            }
+                        }
+                    }, 0);
+                }
+            }
+            
+            cardsContainer.appendChild(cardToPlace);
+        }
+        
+        // Clear highlights
+        document.querySelectorAll('.drag-over').forEach(el => {
+            el.classList.remove('drag-over');
+        });
+        
+        updateRankingDisplay();
+    });
+    
+    // Double-click to remove card
+    document.addEventListener('dblclick', function(e) {
+        if (e.target.classList.contains('placed-card')) {
+            const reportType = e.target.dataset.report;
+            const parentRow = e.target.closest('.report-row');
+            
+            // Show original in source
+            const sourceCard = document.querySelector(`#source-cards [data-report="${reportType}"]`);
+            if (sourceCard) {
+                sourceCard.style.display = 'block';
+            }
+            
+            e.target.remove();
+            
+            // Check if row is now empty
+            if (parentRow) {
+                const container = parentRow.querySelector('.report-cards-in-row');
+                if (container && container.children.length === 0) {
+                    const prevElement = parentRow.previousElementSibling;
+                    const nextElement = parentRow.nextElementSibling;
+                    
+                    // Remove the two zones
+                    if (prevElement && prevElement.classList && prevElement.classList.contains('drop-zone')) {
+                        prevElement.remove();
+                    }
+                    if (nextElement && nextElement.classList && nextElement.classList.contains('drop-zone')) {
+                        nextElement.remove();
+                    }
+                    
+                    // Find new adjacent elements
+                    const newPrev = parentRow.previousElementSibling;
+                    const newNext = parentRow.nextElementSibling;
+                    
+                    // Remove the row
+                    parentRow.remove();
+                    
+                    // Create single zone
+                    if (newPrev && newNext && newPrev.dataset && newNext.dataset &&
+                        newPrev.dataset.position && newNext.dataset.position) {
+                        const newPos = (parseFloat(newPrev.dataset.position) + parseFloat(newNext.dataset.position)) / 2;
+                        const newZone = createDropZone(newPos);
+                        rankingList.insertBefore(newZone, newNext);
+                    }
+                }
+            }
+            
+            updateRankingDisplay();
+        }
+    });
+    
+    function updateRankingDisplay() {
+        // Get all rows in DOM order
+        const allRows = rankingList.querySelectorAll('.ranking-row');
+        
+        let Pos_1 = '';
+        let Pos_2 = '';
+        let Pos_3 = '';
+        let Pos_4 = '';
+        let Pos_5 = '';
+        
+        allRows.forEach(row => {
+            const pos = parseFloat(row.dataset.position);
+            const cards = row.querySelectorAll('.report-card');
+            cards.forEach(card => {
+                const report = card.dataset.report;
+                if (report === '1') Pos_1 = pos;
+                if (report === '2') Pos_2 = pos;
+                if (report === '3') Pos_3 = pos;
+                if (report === '4') Pos_4 = pos;
+                if (report === '5') Pos_5 = pos;
+            });
+        });
+        
+        // Update hidden inputs
+        document.getElementById('form1').value = Pos_1;
+        document.getElementById('form2').value = Pos_2;
+        document.getElementById('form3').value = Pos_3;
+        document.getElementById('form4').value = Pos_4;
+        document.getElementById('form5').value = Pos_5;
+        
+        // Update display
+        document.getElementById('display_1').textContent = Pos_1 === '' ? '' : (Pos_1 === 0 ? '0' : Pos_1);
+        document.getElementById('display_2').textContent = Pos_2 === '' ? '' : (Pos_2 === 0 ? '0' : Pos_2);
+        document.getElementById('display_3').textContent = Pos_3 === '' ? '' : (Pos_3 === 0 ? '0' : Pos_3);
+        document.getElementById('display_4').textContent = Pos_4 === '' ? '' : (Pos_4 === 0 ? '0' : Pos_4);
+        document.getElementById('display_5').textContent = Pos_5 === '' ? '' : (Pos_5 === 0 ? '0' : Pos_5);
+    }
+    
+    // Initialize
+    buildRankingList();
+    updateRankingDisplay();
+});
+</script>
+
